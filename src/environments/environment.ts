@@ -5,5 +5,7 @@
 
 export const environment = {
   production: false,
+  // endpoint: 'https://coop-cbs-api.herokuapp.com/'
   endpoint: 'http://localhost:1337/'
+  
 };

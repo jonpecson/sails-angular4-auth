@@ -59,9 +59,13 @@ export class AuthService {
    * @param password
    */
   authenticate(email: string, password: string): Observable<string> {
-    return this._apiHandler.callService("/user/login", RequestMethod.Post, {email: email, password: password})
-      .map(res => <string>res.text())
-      .do((token: string) => {
+    return this._apiHandler.callService("/login/customer", RequestMethod.Post, {email: email, password: password})
+      .map(res => <string>res.json())
+      .do((res: string) => {
+        const data = JSON.parse(JSON.stringify(res)).response.data;
+        console.log(data.token)
+        const token  = data.token;
+
         localStorage.setItem('token', token);
         this._userService.set(this._jwt.decodeToken());
       });

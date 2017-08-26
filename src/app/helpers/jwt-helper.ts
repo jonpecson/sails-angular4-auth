@@ -67,7 +67,6 @@ export class JwtHelper {
    * @param token
    */
   public decodeToken(token?: string): IUser {
-
     if (token == null) {
       token = localStorage.getItem('token');
     }
